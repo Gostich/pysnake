@@ -1,0 +1,9 @@
+---
+version: '3.4'
+
+services:
+
+  pysnake:
+    build:
+      context: .
+      target: pysnake

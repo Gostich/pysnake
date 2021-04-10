@@ -1,0 +1,10 @@
+---
+version: '3.4'
+
+services:
+
+  pysnake:
+    build:
+      target: pysnake-dev
+    volumes:
+      - ./requirements:/usr/local/pip-requirements/
