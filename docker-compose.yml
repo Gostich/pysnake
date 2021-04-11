@@ -9,5 +9,7 @@ services:
       target: pysnake
     environment:
       DISPLAY: ${DISPLAY}
+    devices:
+      - "/dev/snd"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix

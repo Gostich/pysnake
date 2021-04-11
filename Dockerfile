@@ -5,6 +5,7 @@ RUN apt-get update \
     python-pygame
 
 RUN useradd -m -U -s /bin/bash pygame
+RUN usermod -a -G audio pygame
 USER pygame
 WORKDIR /home/pygame
 ENV SHELL /bin/bash
