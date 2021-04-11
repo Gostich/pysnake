@@ -40,6 +40,6 @@ while not game_over:
 
         game.refresh_board()
         display()
-    clock.tick(20)
+    clock.tick(10)
 
 pygame.quit()

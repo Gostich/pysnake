@@ -18,7 +18,7 @@ class Game:
         self.clear_board()
         self.apples = []  # needed to instantiate Snake
         self.snake = Snake(self)
-        self.apples = [Apple(self)]
+        self.apples = [Apple(self), Apple(self), Apple(self), Apple(self)]
 
     def get_apple(self, x, y):
         for apple in self.apples:
