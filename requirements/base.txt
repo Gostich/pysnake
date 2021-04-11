@@ -4,5 +4,3 @@
 #
 #    pip-compile /usr/local/pip-requirements/base.in
 #
-pygame==2.0.1
-    # via -r /usr/local/pip-requirements/base.in

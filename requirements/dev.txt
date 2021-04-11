@@ -10,8 +10,6 @@ pep517==0.10.0
     # via pip-tools
 pip-tools==6.0.1
     # via -r /usr/local/pip-requirements/dev.in
-pygame==2.0.1
-    # via -r /usr/local/pip-requirements/base.in
 toml==0.10.2
     # via pep517
 

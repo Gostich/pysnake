@@ -7,4 +7,5 @@ services:
     build:
       target: pysnake-dev
     volumes:
+      - ./app:/app/
       - ./requirements:/usr/local/pip-requirements/
