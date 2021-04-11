@@ -16,8 +16,15 @@ class Game:
         self.height = height
         self.board = None
         self.clear_board()
+        self.apples = []  # needed to instantiate Snake
         self.snake = Snake(self)
         self.apples = [Apple(self)]
+
+    def get_apple(self, x, y):
+        for apple in self.apples:
+            if x == apple.x and y == apple.y:
+                return apple
+        return None
 
     def clear_board(self):
         self.board = [
@@ -63,6 +70,13 @@ class Snake:
         self.coordinates.append((x, y))
         if len(self.coordinates) > self.length:
             self.coordinates.pop(0)
+
+        # check if there is an apple and if exists, eat it
+        apple = self.game.get_apple(x, y)
+        if apple:
+            self.game.apples.remove(apple)
+            self.length += 1
+            self.game.apples.append(Apple(self.game))
 
     def step_left(self):
         x, y = self.clean_head(self.head_x-1, self.head_y)
