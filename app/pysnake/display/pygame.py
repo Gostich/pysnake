@@ -7,6 +7,7 @@ class PygameDisplay:
 
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
+    GRAY = (110, 110, 110)
     BLUE = (0, 0, 255)
     RED = (255, 0, 0)
 
@@ -14,23 +15,20 @@ class PygameDisplay:
         for x, column in enumerate(self.game.board):
             for y, cell in enumerate(column):
                 if cell.status == Cell.EMPTY:
-                    pygame.draw.rect(
-                        self.pygame_display,
-                        self.RED,
-                        self.get_coordinates(x, y)
-                    )
+                    cell_color = self.BLACK
                 elif cell.status == Cell.SNAKE:
-                    pygame.draw.rect(
-                        self.pygame_display,
-                        self.WHITE,
-                        self.get_coordinates(x, y)
-                    )
+                    cell_color = self.WHITE
+                pygame.draw.rect(
+                    self.pygame_display,
+                    cell_color,
+                    self.get_coordinates(x, y)
+                )
         pygame.display.update()
 
     def __init__(self, width, height, game):
         pygame.init()
         self.pygame_display = pygame.display.set_mode((width, height))
-        self.pygame_display.fill(self.BLACK)
+        self.pygame_display.fill(self.GRAY)
         self.game = game
 
     @property
