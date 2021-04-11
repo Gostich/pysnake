@@ -14,13 +14,13 @@ while not game_over:
             game_over = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                game.snake.head_x -= 1
+                game.snake.step_left()
             elif event.key == pygame.K_RIGHT:
-                game.snake.head_x += 1
+                game.snake.step_right()
             elif event.key == pygame.K_UP:
-                game.snake.head_y -= 1
+                game.snake.step_up()
             elif event.key == pygame.K_DOWN:
-                game.snake.head_y += 1
+                game.snake.step_down()
         game.refresh_board()
         display()
     clock.tick(30)
