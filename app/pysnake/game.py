@@ -1,3 +1,6 @@
+from random import randint
+
+
 class Cell:
     EMPTY = 0
     SNAKE = 1
@@ -11,9 +14,10 @@ class Game:
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.snake = Snake(self)
         self.board = None
         self.clear_board()
+        self.snake = Snake(self)
+        self.apples = [Apple(self)]
 
     def clear_board(self):
         self.board = [
@@ -22,6 +26,8 @@ class Game:
 
     def refresh_board(self):
         self.clear_board()
+        for apple in self.apples:
+            self.board[apple.x][apple.y].status = Cell.APPLE
         for x, y in self.snake.coordinates:
             self.board[x][y].status = Cell.SNAKE
 
@@ -32,8 +38,9 @@ class Snake:
     def __init__(self, game):
         self.length = self.START_LENGTH
         self.game = game
-        self.head_x, self.head_y = self._start_coordinates()
-        self.coordinates = [(self.head_x, self.head_y)]
+        self.head_x, self.head_y = None, None
+        self.coordinates = []
+        self.new_coordinates(*self._start_coordinates())
 
     def _start_coordinates(self):
         return int(self.game.width / 2), int(self.game.height / 2)
@@ -72,3 +79,18 @@ class Snake:
     def step_down(self):
         x, y = self.clean_head(self.head_x, self.head_y+1)
         self.new_coordinates(x, y)
+
+
+class Apple:
+    def __init__(self, game):
+        self.game = game
+        self.x, self.y = None, None
+        self.set_coordinates()
+
+    def set_coordinates(self):
+        while True:
+            x = randint(0, self.game.width-1)
+            y = randint(0, self.game.height-1)
+            if (x, y) not in self.game.snake.coordinates:
+                self.x, self.y = x, y
+                break

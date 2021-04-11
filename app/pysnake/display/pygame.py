@@ -8,7 +8,6 @@ class PygameDisplay:
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     GRAY = (110, 110, 110)
-    BLUE = (0, 0, 255)
     RED = (255, 0, 0)
 
     def __call__(self):
@@ -18,6 +17,8 @@ class PygameDisplay:
                     cell_color = self.BLACK
                 elif cell.status == Cell.SNAKE:
                     cell_color = self.WHITE
+                elif cell.status == Cell.APPLE:
+                    cell_color = self.RED
                 pygame.draw.rect(
                     self.pygame_display,
                     cell_color,
