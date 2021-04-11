@@ -15,9 +15,14 @@ display = PygameDisplay(1200, 900, game)
 
 clock = pygame.time.Clock()
 last_key = None
+
+game.refresh_board()
+display()
+
 game_over = False
 while not game_over:
     for event in pygame.event.get():
+        print(event)
         if event.type == pygame.QUIT:
             game_over = True
         if event.type == pygame.KEYDOWN:
@@ -34,8 +39,8 @@ while not game_over:
         elif last_key == pygame.K_DOWN:
             game.snake.step_down()
 
-    game.refresh_board()
-    display()
+        game.refresh_board()
+        display()
     clock.tick(20)
 
 pygame.quit()

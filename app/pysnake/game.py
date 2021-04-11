@@ -22,33 +22,53 @@ class Game:
 
     def refresh_board(self):
         self.clear_board()
-        self.board[self.snake.head_x][self.snake.head_y].status = Cell.SNAKE
+        for x, y in self.snake.coordinates:
+            self.board[x][y].status = Cell.SNAKE
 
 
 class Snake:
+    START_LENGTH = 3
+
     def __init__(self, game):
+        self.length = self.START_LENGTH
         self.game = game
         self.head_x, self.head_y = self._start_coordinates()
+        self.coordinates = [(self.head_x, self.head_y)]
 
     def _start_coordinates(self):
         return int(self.game.width / 2), int(self.game.height / 2)
 
+    def clean_head(self, x, y):
+        if x < 0:
+            x = self.game.width - 1
+        elif x >= self.game.width:
+            x = 0
+        if y < 0:
+            y = self.game.height -1
+        elif y >= self.game.height:
+            y = 0
+        return x, y
+
+    def new_coordinates(self, x, y):
+        if x == self.head_x and y == self.head_y:
+            return
+        self.head_x, self.head_y = x, y
+        self.coordinates.append((x, y))
+        if len(self.coordinates) > self.length:
+            self.coordinates.pop(0)
+
     def step_left(self):
-        self.head_x -= 1
-        if self.head_x < 0:
-            self.head_x = self.game.width - 1
+        x, y = self.clean_head(self.head_x-1, self.head_y)
+        self.new_coordinates(x, y)
 
     def step_right(self):
-        self.head_x += 1
-        if self.head_x >= self.game.width:
-            self.head_x = 0
+        x, y = self.clean_head(self.head_x+1, self.head_y)
+        self.new_coordinates(x, y)
 
     def step_up(self):
-        self.head_y -= 1
-        if self.head_y < 0:
-            self.head_y = self.game.height - 1
+        x, y = self.clean_head(self.head_x, self.head_y-1)
+        self.new_coordinates(x, y)
 
     def step_down(self):
-        self.head_y += 1
-        if self.head_y >= self.game.height:
-            self.head_y = 0
+        x, y = self.clean_head(self.head_x, self.head_y+1)
+        self.new_coordinates(x, y)
