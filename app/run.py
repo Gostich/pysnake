@@ -1,6 +1,6 @@
 import pygame
 
-from pysnake.game import Cell, Game
+from pysnake.game import Game
 from pysnake.display.pygame import PygameDisplay
 
 MOVE_KEYS = [
