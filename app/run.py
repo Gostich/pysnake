@@ -24,9 +24,13 @@ while not game_over:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
+            continue
         if event.type == pygame.KEYDOWN:
             if event.key in MOVE_KEYS:
                 last_key = event.key
+            if event.key == pygame.K_q:
+                game_over = True
+                continue
 
     if last_key:
         if last_key == pygame.K_LEFT:
