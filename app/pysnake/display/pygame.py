@@ -15,7 +15,7 @@ class PygameDisplay:
                 elif cell.status == Cell.APPLE:
                     cell_color = RED
                 pygame.draw.rect(
-                    self.pygame_display,
+                    self.surface,
                     cell_color,
                     self.get_coordinates(x, y)
                 )
@@ -23,16 +23,16 @@ class PygameDisplay:
 
     def __init__(self, width, height, game):
         pygame.init()
-        self.pygame_display = pygame.display.set_mode((width, height))
-        self.pygame_display.fill(GRAY)
+        self.surface = pygame.display.set_mode((width, height))
+        self.surface.fill(GRAY)
         self.game = game
 
     @property
     def cell_w(self):
         """cell width"""
         return min(
-            self.pygame_display.get_height() / self.game.height,
-            self.pygame_display.get_width() / self.game.width,
+            self.surface.get_height() / self.game.height,
+            self.surface.get_width() / self.game.width,
         )
 
     def get_coordinates(self, x, y):
