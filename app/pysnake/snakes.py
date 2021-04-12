@@ -1,7 +1,9 @@
 from pysnake.fruits import Apple
+from pysnake.settings import WHITE
 
 
 class Snake:
+    COLOR = WHITE
     START_LENGTH = 3
 
     def __init__(self, game):

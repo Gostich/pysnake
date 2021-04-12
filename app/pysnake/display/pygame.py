@@ -1,7 +1,8 @@
 import pygame
 
 from pysnake.game import Cell
-from pysnake.settings import BLACK, GRAY, RED, WHITE
+from pysnake.settings import BLACK, GRAY, RED
+from pysnake.snakes import Snake
 
 
 class PygameDisplay:
@@ -11,7 +12,7 @@ class PygameDisplay:
                 if cell.status == Cell.EMPTY:
                     cell_color = BLACK
                 elif cell.status == Cell.SNAKE:
-                    cell_color = WHITE
+                    cell_color = Snake.COLOR
                 elif cell.status == Cell.APPLE:
                     cell_color = RED
                 pygame.draw.rect(
