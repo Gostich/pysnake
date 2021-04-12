@@ -1,24 +1,19 @@
 import pygame
 
-from pysnake.game import Cell, Game
+from pysnake.game import Cell
+from pysnake.settings import BLACK, GRAY, RED, WHITE
 
 
 class PygameDisplay:
-
-    WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
-    GRAY = (110, 110, 110)
-    RED = (255, 0, 0)
-
     def __call__(self):
         for x, column in enumerate(self.game.board):
             for y, cell in enumerate(column):
                 if cell.status == Cell.EMPTY:
-                    cell_color = self.BLACK
+                    cell_color = BLACK
                 elif cell.status == Cell.SNAKE:
-                    cell_color = self.WHITE
+                    cell_color = WHITE
                 elif cell.status == Cell.APPLE:
-                    cell_color = self.RED
+                    cell_color = RED
                 pygame.draw.rect(
                     self.pygame_display,
                     cell_color,
@@ -29,7 +24,7 @@ class PygameDisplay:
     def __init__(self, width, height, game):
         pygame.init()
         self.pygame_display = pygame.display.set_mode((width, height))
-        self.pygame_display.fill(self.GRAY)
+        self.pygame_display.fill(GRAY)
         self.game = game
 
     @property
