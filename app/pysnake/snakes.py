@@ -16,13 +16,13 @@ class Snake:
     def _start_coordinates(self):
         return int(self.game.width / 2), int(self.game.height / 2)
 
-    def clean_head(self, x, y):
+    def clean_head_coordinates(self, x, y):
         if x < 0:
             x = self.game.width - 1
         elif x >= self.game.width:
             x = 0
         if y < 0:
-            y = self.game.height -1
+            y = self.game.height - 1
         elif y >= self.game.height:
             y = 0
         return x, y
@@ -43,17 +43,17 @@ class Snake:
             self.game.apples.append(Apple(self.game))
 
     def step_left(self):
-        x, y = self.clean_head(self.head_x-1, self.head_y)
+        x, y = self.clean_head_coordinates(self.head_x-1, self.head_y)
         self.new_coordinates(x, y)
 
     def step_right(self):
-        x, y = self.clean_head(self.head_x+1, self.head_y)
+        x, y = self.clean_head_coordinates(self.head_x+1, self.head_y)
         self.new_coordinates(x, y)
 
     def step_up(self):
-        x, y = self.clean_head(self.head_x, self.head_y-1)
+        x, y = self.clean_head_coordinates(self.head_x, self.head_y-1)
         self.new_coordinates(x, y)
 
     def step_down(self):
-        x, y = self.clean_head(self.head_x, self.head_y+1)
+        x, y = self.clean_head_coordinates(self.head_x, self.head_y+1)
         self.new_coordinates(x, y)
